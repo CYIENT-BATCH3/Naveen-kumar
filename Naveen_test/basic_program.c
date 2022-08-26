@@ -6,7 +6,9 @@ int b=5;
 int sum=a+b;
 int sub=a-b;
 int div=a/b;
+  int mul=a*b;
 printf("sum is %d\n",sum);
 printf("subtraction is %d\n",sub);
-printf(" devision is %d\n",div);
+printf(" division is %d\n",div);
+  printf(" mul is %d\n",mul);
 }

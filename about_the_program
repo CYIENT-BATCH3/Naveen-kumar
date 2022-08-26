@@ -1,0 +1,5 @@
+-define header files.
+-create a memory for the main program by using int main().
+-create identifiers for the variables that we used in the code and initialize it.
+-by using operators write the logic or statements.
+-print the output by predefined format specifiers for different datatypes.

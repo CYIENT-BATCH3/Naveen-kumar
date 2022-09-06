@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include<string.h>
+void display(char cha1, char cha2) {
+  printf(" %c\n", cha1);
+  printf(" %c\n", cha2);
+}
+
+int main() {
+  char aArray[] = "naveen";  // pass second and third elements to display()
+  display(aArray[0], aArray[2]);
+  char cha3[]="kumar";
+  char cha4[50];
+strcpy(cha4,cha3);
+printf("the cha4 is=");
+puts(cha4);
+/*strupr(cha4);
+printf("the upper case of cha4 is= %s",cha4);*/
+printf("\nthe reverse of cha4 is= %d",strrev(cha4));
+  return 0;
+}

@@ -1,0 +1,140 @@
+/*wap to fing area of circle,cylinder,cone by using macro pi */
+#include<stdio.h>
+#include<math.h>                                //including header file for the mathematical function(sqrt)
+#define PI 3.14                                 //defining a macro for the constant value decleration
+float acir,acy,acone;                           // decleration of area viables to store the result
+float r,h,l;                                    //decleration of required variables
+int main()                                      //main function
+{
+   printf("enter r,h,l values\n");              //asking user to enter values
+   scanf("%f\n%f\n%f",&r,&h,&l);                //reading the inputs from the user
+   acir=PI*r*r;                                 //formulea for area of circle
+   acy=2*PI*r*h + 2*PI*r*r;                     //formulea for area of the cylinder 
+   acone=PI*r*(r+sqrt(h*h+r*r));                //formulea for area of the cylinder
+   printf("area of circle is = %f\n",acir);     //printing the area of circle
+   printf("area of cylinder is = %f\n",acy);    //printing the area of cylinder
+   printf("area of cone is = %f",acone);        //printing the area of cone
+}
+===================================================================================================
+/*
+ WAP to find the square of a given number
+ */
+#include<stdio.h>
+#include<math.h>
+#define Area(r) (pi*r*r)				//defining a macro for area
+#define pi 3.142					// defining a pi value
+int main()
+{
+	setbuf(stdout,NULL);				//mandatory allocating buffer to null
+	float r;					//declaring r as a variable of float data type
+	printf("\n enter the radius: ");		// asking user to enter radius
+	scanf("%f",&r);					//reading the input which entered by the user
+	printf("\n area= %f",Area(r));			//printing o/p by calling the macro
+ return 0;						// returning int value for successful compilation
+}
+==================================================
+
+#include<stdio.h>
+struct student1
+{
+	unsigned int high;
+	unsigned int low;
+}s1;
+struct student2
+{
+	unsigned int high:1;
+	unsigned int low:1;
+}s2;
+int main()
+{
+	printf("%d\n",sizeof(s1));
+	printf("%d",sizeof(s2));
+}
+
+===================================================
+#include<stdio.h>
+struct student1
+{
+	unsigned int x:3;
+
+}s1;
+int main()
+{
+	s1.x=4;
+	printf("%d\n",sizeof(s1));
+	printf("value is %d",s1.x);
+
+}
+
+===================================================
+
+#include<stdio.h>
+//#pragma pack(1)
+struct student1                                 //declaring a structure
+{
+	char ch;
+	int a;
+	float ch1;
+	long long int l1;
+}s1;
+int main()
+{
+
+	printf("sizeof(s1.ch)= %d \n",sizeof(s1.ch));   // printing the INDIVIDUAL SIZE OF structure elements
+	printf("sizeof(s1.a)= %d \n",sizeof(s1.a));		
+	printf("sizeof(s1.ch1)= %d \n",sizeof(s1.ch1));
+	printf("sizeof(s1.l1)= %d \n",sizeof(s1.l1));
+
+	printf("sizeof(s1)= %d \n",sizeof(s1));				//printing thestructure size without pragma
+
+}
+
+
+=====================================================
+/*with pragma*/
+
+#include<stdio.h>
+#pragma pack(1)
+struct student1                                 //declaring a structure
+{
+	char ch;
+	int a;
+	float ch1;
+	long long int l1;
+}s1;
+int main()
+{
+
+	printf("sizeof(s1.ch)= %d \n",sizeof(s1.ch));   // printing the INDIVIDUAL SIZE OF structure elements
+	printf("sizeof(s1.a)= %d \n",sizeof(s1.a));		
+	printf("sizeof(s1.ch1)= %d \n",sizeof(s1.ch1));
+	printf("sizeof(s1.l1)= %d \n",sizeof(s1.l1));
+
+	printf("sizeof(s1)= %d \n",sizeof(s1));				//printing thestructure size with pragma
+
+}
+
+
+=====================================================
+#include<stdio.h>
+typedef struct                                  //declaring a structure
+{
+	int a;
+    long long int b;
+}point;
+int main()
+{
+    setbuf(stdout,NULL);				//setting buffer to null
+	point s1;							//declaring s1
+	printf("enter a value for 'a' and 'b'\n");	//asking user to enter the values
+	scanf("%d %lld",&s1.a,&s1.b);				//reading input from user
+	printf("sizeof(s1.ch1)= %d \n",sizeof(s1.a));
+	printf("sizeof(s1.l1)= %d \n",sizeof(s1.b));
+
+return 0;
+}
+
+
+
+======================================================
+

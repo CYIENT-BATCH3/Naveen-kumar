@@ -1,0 +1,156 @@
+#include<stdio.h>
+struct student						//structure declaration
+{
+	char name[50];//upto 50 characters user can enter
+	int age;// decleration of age
+}record;
+void display(struct student record); // function decleration
+
+	int main()
+	{
+		setbuf(stdout,NULL);
+		struct student s1;
+		struct student s2;
+		printf("Enter name : ");
+		scanf("%[^\n]s",s1.name); // read input from user until \n entered
+		printf("Enter age: ");
+		scanf("%d",&s1.age);
+
+		printf("Enter name : ");
+		scanf("%s",s2.name);  // read input from user
+		printf("Enter age: ");
+		scanf("%d",&s2.age);
+		display(s1);          // passing struct as an argument
+		display (s2);
+		return 0;
+	}
+void display(struct student record)
+{
+	printf("student information\n");//printing student information
+	printf("Name: %s\n",record.name);
+	printf("Age: %d\n",record.age);
+	printf("=====================================\n");
+}
+=====================================================================================
+
+#include <stdio.h>
+#include<string.h>
+struct employee // structure defination
+{
+	int empid;
+	char name[50];
+	float salary;
+};
+void op(struct employee ); //
+int main()
+{
+	struct employee r1;//declering the strcut variable
+	r1.empid=12021;//user iput
+	strcpy(r1.name,"naveen");//reading input by strcpy function from user
+	r1.salary=45000;
+	op(r1);//function call without reference
+	return 0;
+}
+void op(struct employee r1)//funtion defination
+{
+	printf("employee id = %d\n",r1.empid);//using . to access the details
+	printf("employee name = %s\n",r1.name);
+	printf("employee salary = %f\n",r1.salary);
+}
+=========================================================================
+#include <stdio.h>
+#include<string.h>
+struct employee // structure defination
+{
+	int empid;
+	char name[50];
+	float salary;
+};
+void op(struct employee *r1 ); //declaring function with pointer
+int main()
+{
+	struct employee r1;//declering the strcut variable
+	r1.empid=12021;//user iput
+	strcpy(r1.name,"naveen");//reading input by strcpy function from user
+	r1.salary=45000;
+	op(&r1);//function call with reference
+	return 0;
+}
+void op(struct employee *r1)//funtion defination
+{
+	printf("employee id = %d\n",r1->empid);//using . to access the details
+	printf("employee name = %s\n",r1->name);
+	printf("employee salary = %f\n",r1->salary);
+}
+========================================================================
+#include <stdio.h>
+//#include<string.h>
+void op(int empid,char name[20], float salary);
+int empid=12021;
+char name[]="naveen";
+float salary=45000;
+int main()
+{
+	op(empid,name,salary);
+	return 0;
+}
+void op(int empid,char name[20], float salary)
+{
+	printf("employee id = %d\n",empid);
+	printf("employee name = %s\n",name);
+	printf("employee salary = %f\n",salary);
+}
+=================================================================
+#include<stdio.h>
+#define _XTAL_FREQ 20000000
+int main()
+{
+TRISCbits.RC0=0;//output pin to LED from RC0
+PORTBbits.RB0=1;//input to switch from RB0
+PORTCbits.RC0=0;//setting initial status to LED
+RBPU=0;//enabling pull ups
+while(1)
+{
+    if(RB0==0)//switch is closed 
+    {
+        PORTCbits.RC0= 1;  //LED ON      
+    }
+    else// switch is open
+    {
+        PORTCbits.RC0= 0;//LED OFF
+    }
+   
+}
+}
+==================================================================
+#include<stdio.h>
+#define _XTAL_FREQ 20000000
+#define led RB0
+#define led2 RB1
+
+
+void main()
+{
+    TRISBbits.RB0=0;//setting as output
+    TRISBbits.RB1=0;//setting as output
+
+    led=0;led2=0;//setting initial condition
+    while(1)
+    {
+        for(int i=0;i<5;i++)//creating loop for 5 time blink
+        {
+        led=1;//LED ON
+        __delay_ms(5);// delay
+        led=0;// led OFF
+        __delay_ms(5);}
+        for(int i=0;i<3;i++)//creating loop for 3 time blink
+        {
+        led2=0;//led 2 OFF
+        __delay_ms(5);//delay of 5 ms
+        led2=1;//LED 2 ON
+        __delay_ms(5);}
+        led2=0;//setting to OFF
+        __delay_ms(5);
+    }
+    }
+=====================================================================

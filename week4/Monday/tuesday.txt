@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+              int ch;char s[100];
+              FILE *fptr=NULL;   //declaring file pointer to bring the file from ram to rom
+              if((fptr=fopen("long.txt","a"))==NULL)  //checking if fptr is null then it should print file not found and write mode
+              {
+              printf("FILE NOT FIND");
+              exit(1);  //if file is not found then it directly exits from the program
+}
+             ch=123;//the content which u want to write
+             scanf("%[^\n]s",s);
+             printf("written already if u want to check u can check\n");
+             fprintf(fptr,"%s",s);
+              fclose(fptr);   //after performing the operation we must close the file
+              return 0;
+}

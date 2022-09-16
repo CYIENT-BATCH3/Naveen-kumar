@@ -1,0 +1,333 @@
+//wednesday
+//WAP on error handling
+
+
+#include<stdio.h>
+
+int main()
+{
+	FILE *fp;
+	char string[30]="Error is handling";
+	fp=fopen("abc.txt","r");
+	if(fp==NULL)
+	{
+		printf("file not found");
+	}
+	else
+	{
+		fprintf(fp,"%s","welldone");
+		if(ferror(fp))
+		{
+			perror(string);
+		}
+	}
+	fclose(fp);
+}
+//output
+//Error is handling: Bad file descriptor
+=========================================================================
+//writing in writing mode
+#include<stdio.h>
+
+int main()
+{
+	FILE *fp;
+	//char string[30]="Error is handling";
+	fp=fopen("abc.txt","w");
+	if(ferror(fp)!=0)
+		printf("error occured...!");
+	putc('T',fp);
+	if(ferror(fp)!=0)
+		//perror("writing intoread only file");
+		printf("error occured");
+	fclose(fp);
+	return 0;
+}
+=======================================================
+//writing in reading mode
+#include<stdio.h>
+
+int main()
+{
+	FILE *fp;
+	//char string[30]="Error is handling";
+	fp=fopen("abc.txt","r");
+	if(ferror(fp)!=0)
+		printf("error occured...!");
+	putc('T',fp);
+	if(ferror(fp)!=0)
+		//perror("writing intoread only file");
+		printf("error occured");
+	fclose(fp);
+	return 0;
+}
+=========================================================
+//WAP to print the date in the format month/date/year using stucture bit field
+#include<stdio.h>
+struct month
+{
+	unsigned int m:4;
+	unsigned int d:5;
+	unsigned int y;
+};
+int main()
+{
+	struct month d;d.m=12;d.d=31;d.y=2022;
+	printf("DATE : %d / %d / %d",d.m,d.d,d.y);
+}
+==========================================================
+//main function
+
+#include<stdio.h>
+#include"add.h"
+#include"adddef.h"
+#include"sub.h"
+#include"subdef.h"
+#include"mul.h"
+#include"muldef.h"
+int main()
+{
+	int x=10,y=5;
+	add(x,y);
+	sub(x,y);
+	mul(x,y);
+	return 0;
+}
+/////////////////////////////////////
+//fun declerations of add, sub,mul
+
+#ifndef ADD_H_
+#define ADD_H_
+void add(int a,int b);
+#endif /* ADD_H_ */
+-------------------------------
+
+#ifndef SUB_H_
+#define SUB_H_
+void sub(int a,int b);
+#endif /* SUB_H_ */
+-------------------------------
+#ifndef MUL_H_
+#define MUL_H_
+void mul(int k, int l);
+#endif /* MUL_H_ */
+-------------------------------
+//funtion definations of add mul sub
+
+#ifndef ADDDEF_H_
+#define ADDDEF_H_
+
+void add(int a,int b)
+{
+	printf("sum=%d\n",a+b);
+}
+
+#endif /* ADDDEF_H_ */
+---------------------------------
+
+#ifndef MULDEF_H_
+#define MULDEF_H_
+void mul(int k,int l)
+{
+	printf("mul=%d\n",k*l);
+}
+
+
+#endif /* MULDEF_H_ */
+---------------------------------
+
+#ifndef SUBDEF_H_
+#define SUBDEF_H_
+void sub(int a,int b)
+{
+	printf("sub =%d\n",a-b);
+}
+
+
+#endif /* SUBDEF_H_ */
+=================================================================
+/*
+ * calci.c
+ *
+ *  Created on: Sep 14, 2022
+ *      Author: ny61838
+ */
+//WAP to reading the values from headers
+#include<stdio.h>
+#include"caldef.h"
+#include"caldef2.h"
+int main()
+{
+
+	printf("4 + 2 = %d\n",calculator('+',4,2));
+	printf("4 - 2 = %d\n",calculator('-',4,2));
+	printf("4 * 2 = %d\n",calculator('*',4,2));
+	printf("4 / 2 = %d\n",calculator('/',4,2));
+	printf("4 %% 2 = %d\n",calculator('%',4,2));
+}
+---------------------------------------------------
+/*
+ * caldef.h
+ *
+ *  Created on: Sep 14, 2022
+ *      Author: ny61838
+ */
+
+#ifndef CALDEF_H_
+#define CALDEF_H_
+
+int calculator(char op,int i1,int i2);
+
+#endif /* CALDEF_H_ */
+----------------------------------------------------
+/*
+ * caldef2.h
+ *
+ *  Created on: Sep 14, 2022
+ *      Author: ny61838
+ */
+
+#ifndef CALDEF2_H_
+#define CALDEF2_H_
+
+int calculator(char op,int i1,int i2)
+{
+	if(op=='+')
+	    {
+	    	return (i1+i2);
+	    }
+	if(op=='-')
+		{
+		return (i1-i2);		}
+	if(op=='*')
+		{
+		return (i1*i2);		}
+	if(op=='/')
+			{
+		return (i1/i2);			}
+	if(op=='%')
+			{
+		return (i1%i2);			}
+
+
+}
+
+#endif /* CALDEF2_H_ */
+-----------------------------------------------
+==================================================
+/*
+ * emp.c
+ *
+ *  Created on: Sep 15, 2022
+ *      Author: ny61838
+ */
+
+
+#include<stdio.h>
+#include<string.h>
+#include"emp1.h"
+#include"empdef.h"
+struct student
+{
+              int age;
+              char name[10];
+};
+struct employee
+{
+              int id;
+              char peru[10];
+};
+struct sensor
+{
+              int x;
+              int y;
+};
+int main()
+{
+struct student record;
+struct employee details;
+struct sensor axis;
+record.age=23;
+strcpy(record.name,"shabbar");
+//record.name[10]="shabbar";
+details.id=2022;
+strcpy(details.peru,"naveen");
+//details.peru[10]="naveen";
+axis.x=50;
+axis.y=40;
+display(record.name,record.age);
+display1(details.peru,details.id);
+display2(axis.x,axis.y);
+}
+
+------------------------------------
+/*
+ * emp1.h
+ *
+ *  Created on: Sep 14, 2022
+ *      Author: ny61838
+ */
+
+#ifndef EMP1_H_
+#define EMP1_H_
+void display(char name[10],int age);
+void display1(char name[10],int id);
+void display2(int x,int y);
+
+#endif /* STDDEC_H_ */
+
+--------------------------------------
+/*
+ * empdef.h
+ *
+ *  Created on: Sep 14, 2022
+ *      Author: ny61838
+ */
+#ifndef EMPDEF_H_
+#define EMPDEF_H_
+void display(char name[10],int age)
+{
+              printf("NAME :%s\n",name);
+              printf("AGE:%d\n",age);
+}
+void display1(char peru[10],int id)
+{
+              printf("NAME:%s\n",peru);
+              printf("ID:%d\n",id);
+                           }
+void display2(int x,int y)
+                           {
+              printf("x-axis:%d\n",x);
+              printf("y-axis:%d\n",y);
+                           }
+
+
+#endif /* STDDEF_H_ */
+===============================================
+#include <xc.h>
+
+#include<stdio.h>
+#define _XTAL_FREQ 20000000
+#define led1 RC0
+#define led2 RC1
+void main()
+{
+    TRISA=0x01;
+    TRISC=0x00;
+    PORTC=0x00;
+    ADCON0=0x41;//41
+    ADCON1=0xC0;//c0
+    unsigned int a=0;
+    while(1)
+    {
+       // ADCON0=0x09;
+        __delay_ms(200);
+        GO_nDONE=1;
+        while(GO_nDONE);
+        a=(ADRESH<<8)+ADRESL;
+        PORTC =a;
+        
+    }
+    
+}
+====================================================

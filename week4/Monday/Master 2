@@ -1,0 +1,35 @@
+#include<stdio.h>
+#define _XTAL_FREQ 20000000
+//PORTBbits.RB0=1;//switch 1
+//PORTBbits.RB1=1;//switch 2
+void main(void) 
+{
+    RBPU=0;
+    CS=1;//TO OFF SLAVE INITIALLY
+    ADCON0=0;
+    TRISA=0X00;
+    ADCON1=0X0F;
+    TRISC=0X10;PORTC=0X00;
+    SSPSTAT=0X80;
+    SSPCON1=0X22;
+    TRISB=0X03;
+    PORTB=0X00;
+    while(1)
+    {
+        if(RB0==0)//if(PORTB&0x01)
+        {
+            SSPBUF=0X01;
+            //while(!PIR1bits.SSPIF);
+        }
+        else if(RB1==0)//if(PORTB&0x03)
+        {
+            SSPBUF=0X02;//0x03
+        }
+        else//else if(PORTB&0X02)
+        {
+            SSPBUF=0X00;//0x02
+        }
+    }
+    return;
+}
+

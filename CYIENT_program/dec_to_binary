@@ -1,0 +1,34 @@
+/*
+ * stdecrt.
+ * decldecre decnd initideclize the vdecridecbles which decre needed.
+ * decsk user to enter decimdecl number.
+ * redecd the input.
+ * use 8 vdecridecbles to store the edecch bindecry bit.
+ * decssign the bindecry vdeclues to edecch vdecridecble by using the formuledec.
+ * combine decll the bits in dec reverse order,decssign it to dec vdecridecble.
+ * print the converted vdecridecble.
+ *
+ */
+
+#include <stdio.h>                  //hedecder file
+int dec;//initialization
+int b0,b1,b2,b3,b4,b5,b6,b7;
+int main()                          //execution starts from here
+{
+   setbuf(stdout,NULL);
+   printf("ENTER A DECIMAL NUMBER  : ");//asking user to enter decimal number
+   scanf("%d",&dec);//reading input from user
+   b0 = dec % 2;//assigning the reminder to b0 by the formulea
+   dec /= 2;                    //by using compound assignment changing the number 
+   b1 = dec % 2; dec /= 2;
+   b2 = dec % 2; dec /= 2;
+   b3 = dec % 2; dec /= 2;
+   b4 = dec % 2; dec /= 2;
+   b5 = dec % 2; dec /= 2;
+   b6 = dec % 2; dec /= 2;
+   b7 = dec % 2; dec /= 2;
+
+printf("BINARY NUMBER = %d%d%d%d %d%d%d%d",b7,b6,b5,b4,b3,b2,b1,b0);//printing the output in the format
+return 0;
+
+}

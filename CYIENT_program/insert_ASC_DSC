@@ -1,0 +1,84 @@
+/*
+ * create an array size of 10.
+ * insert elements into the array.
+ * print array before the operations.
+ * perform asscending order and descending order.
+ * print elements before and after operation.
+ *
+ */
+#include<stdio.h>//header files
+void ASC();//function decleration of ascending order
+void DSC();//function decleration of descending order
+int array[50];//declaring arary of size 50
+int size,i,j; //global variables
+int main()//execution starts from here
+{
+	setbuf(stdout,NULL);//initially the buffer is set to null
+	printf("Input size of array:");//asking user to enter the size
+	scanf("%d",&size);//reading the input from user
+	printf("Enter array elements:");//printing
+	for(int i=0;i<size;i++)
+	{
+		scanf("%d",&array[i]);//reading the array elements from user
+	}
+	printf("Input array elements:");
+	for(int i=0;i<size;i++)
+	{
+		printf("%d",array[i]);//printing the array elements from user
+		if(i<size-1)
+		{
+			printf(",");//to print the comma(,)
+		}
+	}
+	 ASC(array);//function call for ascending
+	 DSC(array);//function call for descending
+}
+void ASC(int asc[size])//function defination
+{
+    int temp;//temperorry storage elements
+	for (int i = 0; i < size; i++)
+	        {
+                for (int j = i + 1; j < size; j++)
+	            {
+	                if (array[i] > array[j])//comparing twom elements in a array
+	                {
+	                    temp =  array[i];//assigning value1 to temp
+	                    array[i] = array[j];//assigning value2 to i
+	                    array[j] = temp; //temp is assiging to j
+	                }
+	            }
+	        }
+	 printf("\nArray sorted in ascending order:");
+	        for (i = 0; i <=size-1; ++i)
+	        {
+	        	printf("%d",array[i]);//printing sorted array
+	        	if(i<size-1)
+	        	{
+	               	printf(",");
+	           	}
+	        }
+}
+void DSC(int dsc[size])
+{
+    int temp;
+	for (int i = 0; i < size; i++)
+	        {
+	            for (int j = i + 1; j < size; j++)
+	            {
+	                if (array[i] < array[j])//condition
+	                {
+	                    temp =  array[i];
+	                    array[i] = array[j];
+	                    array[j] = temp;
+	                }
+	            }
+	        }
+	 printf("\nArray sorted in ascending order:");
+	 for (i = 0; i <= size-1; ++i)
+	        {
+	        	printf("%d",array[i]);//printing sorted array
+	        	if(i<size-1){
+	        	printf(",");
+	        	}
+	        }
+}

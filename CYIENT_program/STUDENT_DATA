@@ -1,3 +1,9 @@
+/*
+*declare a structure.
+*declare structure members.
+*read the structure members with the help of for loop.
+*print the student details.
+*/
 #include<stdio.h>
 #include<stdlib.h>
 void read_data(struct studentdata *s);//function prototype declaring

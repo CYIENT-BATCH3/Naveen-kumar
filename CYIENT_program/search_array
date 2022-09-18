@@ -1,0 +1,62 @@
+/*
+ * create an array size of 10.
+ * insert elements into the array.
+ * print array before the operations.
+ * enter a number to search in array
+ * if number found print the number with the position.
+ * else print number doesn't exist in array.
+ *
+ */
+#include<stdio.h>//header files
+void found();//function decleration of descending order
+int array[50];//declaring arary of size 50
+int size,i,j,src; //global variables
+int main()//execution starts from here
+{
+	setbuf(stdout,NULL);//initially the buffer is set to null
+	printf("Input size of array:");//asking user to enter the size
+	scanf("%d",&size);//reading the input from user
+	printf("Enter array elements:");//printing
+	for(int i=0;i<size;i++)
+	{
+		scanf("%d",&array[i]);//reading the array elements from user
+	}
+	printf("Input array elements:");
+	for(int i=0;i<size;i++)
+	{
+		printf("%d",array[i]);//printing the array elements from user
+		if(i<size-1)
+		{
+			printf(",");//to print the comma(,)
+		}
+	}
+	found();
+}
+void found()
+{
+	int *p;//declaring a pointer
+	int count=0;
+	int pos=0;
+	printf("\nenter the number want to search in array:");//asking user for number to search
+	scanf("%d",&src);//reading numbr and stored into src
+	p=&src;//passing the address of the value into pointer
+	for(i=0;i<size;i++)
+	{
+		if(array[i]==*p)//if condition matches count increses
+		{
+			count=1;
+			pos=i+1;
+		}
+	}
+
+	if(count==1)//if count is equal to 1 print the number and the position
+	{
+		printf("%d is found at %d position",src,pos);
+	}
+	else
+	{
+		printf("%d does not exists in array",src);
+	}
+
+
+}

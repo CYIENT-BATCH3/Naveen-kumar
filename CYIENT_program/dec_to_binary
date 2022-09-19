@@ -32,3 +32,31 @@ printf("BINARY NUMBER = %d%d%d%d %d%d%d%d",b7,b6,b5,b4,b3,b2,b1,b0);//printing t
 return 0;
 
 }
+======================================================================================================================
+/*program to convert user input decimal value to the binary value
+ *
+ * dec_to_bin.c
+ *
+ *start
+ *start take user input from the user
+ *consider the compailer as 16 bit and using for loop shift the number with the iteration
+ *extract each bit and print it.
+ *
+ */
+
+#include<stdio.h>
+int main()
+{
+	setbuf(stdout,NULL);
+	int num;
+	printf(" ENTER THE DECIMAL NUMBER :  ");		//take user inpurt in main program
+	scanf("%d",&num);
+	for(int i=31;i>=0;i--)							//iterate the loop until 32 values is read
+	{
+		if( num & (1<<i))							//extract each bit from the number and print it
+			printf("%d",1);							//if it is high thenprint 0
+		else
+			printf("%d",0);							//if it is low print 0;
+	}
+	return 0;
+}

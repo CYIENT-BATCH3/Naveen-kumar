@@ -1,16 +1,16 @@
 /*
- * stdecrt.
- * decldecre decnd initideclize the vdecridecbles which decre needed.
- * decsk user to enter decimdecl number.
- * redecd the input.
- * use 8 vdecridecbles to store the edecch bindecry bit.
- * decssign the bindecry vdeclues to edecch vdecridecble by using the formuledec.
- * combine decll the bits in dec reverse order,decssign it to dec vdecridecble.
- * print the converted vdecridecble.
+ * start.
+ * declare and initialize the varidecbles which are needed.
+ * ask user to enter decimal number.
+ * read the input.
+ * use 8 varidecbles to store the each binary bit.
+ * assign the binary values to edecch variable by using the formulea.
+ * combine all the bits in a reverse order,assign it to dec variable.
+ * print the converted variable.
  *
  */
 
-#include <stdio.h>                  //hedecder file
+#include <stdio.h>                  //header file
 int dec;//initialization
 int b0,b1,b2,b3,b4,b5,b6,b7;
 int main()                          //execution starts from here

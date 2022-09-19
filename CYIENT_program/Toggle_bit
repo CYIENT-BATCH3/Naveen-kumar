@@ -1,0 +1,38 @@
+/*program to convert user input decimal value to the binary value
+ *
+ * dec_to_bin.c
+ *
+ *start
+ *start take user input from the user
+ *consider the compailer as 8 bit and using for loop shift the number with the iteration
+ *extract each bit and print it.
+ *
+ */
+
+#include<stdio.h>
+int toggle_bit(int num1,int pos_no);
+int main()
+{
+	setbuf(stdout,NULL);
+	int num, num1,pos_no;						    //deaclare variable
+	printf("enter the number and bit:");	//take user input from user
+	scanf("%d%d",&num1,&pos_no);
+	for(int i=7;i>=0;i--)							//iterate the loop until 7 values is read
+	{
+		if( num1 & (1<<i))							//extract each bit from the number by bitwise AND and print it
+			printf("%d",1);							//if it is high thenprint 0
+		else
+			printf("%d",0);							//if it is low print 0;
+	}
+	num=toggle_bit(num1,pos_no);//function call and assigning to a variable
+	printf("\nbinary number after toggle %d position is : \n",pos_no);
+		for(int i=7;i>=0;i--)							//iterate the loop until 7 values is read
+		{
+			if( num & (1<<i))							//extract each bit from the number and print it
+				printf("%d",1);							//if it is high thenprint 0
+			else
+				printf("%d",0);							//if it is low print 0;
+		}
+
+	return 0;
+}

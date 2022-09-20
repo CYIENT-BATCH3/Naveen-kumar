@@ -1,0 +1,153 @@
+/*
+ * WAP to find sum of 4 digit number C++
+ *
+ */
+#include<iostream>//header file for cpp which includes the standerds
+using namespace std;//scope resolution operator
+int main()//execution starts from here
+{
+	int num,num1,rem;//decleration
+        int sum=0;//decleration and initialization
+	cout<<"enter a 4 digit number:\n";//printing on the console
+	cin>>num;//reading input from user
+	num1=num;//assigning input to another variables
+	if(num<10000)//if true it will enter to the loop
+		{
+                if(num>999)//if true it will enter to the loop
+                    {
+		    while(num>0)//until it fails it will enter to the loop
+		        {
+			    rem=num%10;
+			    num=num/10;
+			    sum=sum+rem;
+
+		        } 
+			cout<<"sum of the digits in "<<num1<<" is = "<<sum;//printing the output
+                    }
+		    else
+		    {
+		    	cout<<"enter a valid number > 999";//printing
+
+		    }
+
+
+		}
+	else
+	        {
+		    cout<<"enter a valid number < 10000";
+	        }
+
+
+	return 0;
+}
+
+
+=========================================
+/* WAP to print natural number upto n
+ * natural.cpp
+ *
+ *  Created on: Sep 19, 2022
+ *      Author: ny61838
+ */
+
+#include<iostream>
+using namespace std;//scope resolution operator
+int main()
+{
+	int min,max;//initialization
+	cout<<"enter the max and min values to print natural numbers\n";//priting on the console
+	cin>>min>>max;//reading inputs 
+		for(int i=min;i<=max;i++)
+		{
+			int a=i;//assigning
+			cout<<a<<" ";//printing format
+
+		}
+
+	return 0;
+}
+==========================================
+/*
+* factorial.c
+*
+*/
+
+// FACTORIAL OF NUMBER USING FOR LOOP ......
+
+#include<iostream>//header
+using namespace std;//scope resolution operator
+int main()
+{
+              int i;//decleration
+   double fact=1,number;//initializing as double
+  cout<<"Enter any Number: ";//asking user to enter input
+cin>>number;//reading input
+  for(i=1;i<=number;i++)
+  {
+      fact=fact*i;//
+  }
+  cout<<"Factorial of " <<number<<" is: "<<fact<<endl;printing on the console in a desired format
+  return 0;
+}
+==========================================
+/*WAP to print whether the given char is vowel or consonent
+ * vowel.cpp
+ *
+ *  Created on: Sep 19, 2022
+ *      Author: ny61838
+ */
+
+#include<iostream>//header
+using namespace std;//scope resolution operator
+int main()
+{
+	char ch;//decleration
+	while(1)
+	{
+	cout<<"\nenter a charecter : ";//asking user
+	cin>>ch;//reading input
+	if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'||ch=='A'||ch=='E'||ch=='I'||ch=='O'||ch=='U')//if true it will enter to the loop
+	{
+		cout<<ch<<" is vowel";
+
+	}
+	else
+		cout<<ch<<" is consonent";//if not it will print this statement
+	}
+	return 0;
+
+}
+=========================================
+/*WAP to convert the string to upper or lower
+ * UPPER.cpp
+ *
+ *  Created on: Sep 19, 2022
+ *      Author: ny61838
+ */
+
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+    char s[10];//creating array of char type
+    int n,i;//decleration of variables of integer type
+    cout<<"enter the string :";//asking user to give input
+    cin>>s;//reading input
+    n= strlen(s);//finding input string length
+    cout<<"after upper case converstion:\n";//priting on the console
+    for(i=0;i<n;i++)
+    {
+
+        putchar(toupper(s[i]));//printing the upper converted ouput 
+
+    }
+    cout<<"\n";
+	cout<<"after upper case converstion:\n";
+    for(i=0;i<n;i++)
+    {
+        putchar(tolower(s[i]));//printing the upper converted ouput 
+    }
+               return 0;
+}
+=======================================================

@@ -1,0 +1,96 @@
+/*WAP to access the details by using access specifiers in c++
+ * clas.cpp
+ *
+ *  Created on: Sep 20, 2022
+ *      Author: ny61838
+ */
+
+#include<iostream>
+using namespace std;//scope resolution operator
+class Myclass		//creating a class with name of Myclass
+{
+public :		//public access specifier
+	int x;		//public attribute
+private:		//private access specifier
+	int y;		//private attribute
+};
+int main()
+{
+	Myclass myObj;
+	myObj.x=25;//allowed (public)
+	//myObj.y=50;//not allowed (private)
+	cout<<myObj.x;//reading from class
+	return 0;
+}
+===================================================================
+/*program to defining function inside the class 
+ * InsideClass.cpp
+ *
+ *  Created on: Sep 20, 2022
+ *      Author: ny61838
+ */
+#include<iostream>//explicitly assigning io
+using namespace std;
+class Student
+{
+	int age;//default access specifier (private)
+	float fee;//declaration of variable of float type
+public:		//access specifier
+	void Input()//function defination
+	{
+		cout<<"ENTER THE AGE : ";//asking user to enter age
+		cin>>age;//reading age 
+		cout <<"enter the fee : ";//asking user to enter fee
+		cin>>fee;// reading fee
+	}
+	void Display()//function defination
+	{
+		cout<<"my age is "<<age;//accessing the age from class
+		cout<<"\nmy fee is "<<fee;//accessing the fee from class
+	}
+};
+int main()
+{
+	Student S1;//class variable
+	S1.Input();//function call
+	S1.Display();//function call
+	return 0;
+}
+====================================================================
+
+/*function outside the class
+ * outsideclass.cpp
+ *
+ *  Created on: Sep 20, 2022
+ *      Author: ny61838
+ */
+#include<iostream>
+using namespace std;
+class employee
+{
+	char name[30];//creating an array of char type
+	float salary;//declaring variable as float float type
+public:				//access specifier
+	void read();		
+	void output();
+};
+void employee::read()//function defination
+{
+	cout<<"Enter the name of the employee : ";
+	cin>>name;
+	cout<<"Enter the salary : ";
+	cin>>salary;
+}
+void employee::output()//funtion defination
+{
+	cout<<"Name is : "<<name;
+	cout<<"\nsalary of "<<name<<" is : "<<salary;
+}
+int main()//main function
+{
+	employee e1;//class variable
+	e1.read();//function call
+	e1.output();//function call
+	return 0;
+}
+====================================================================

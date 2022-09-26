@@ -1,0 +1,210 @@
+/*
+ * start
+ * enable the interrupts.
+ * set the configuration
+ * enable the filters and receiving registers
+ * receieve the data and send the responce via different ids
+ * 
+ */
+// PIC18F458 Configuration Bit Settings
+
+// 'C' source line config statements
+
+// CONFIG1H
+#pragma config OSC = HS         // Oscillator Selection bits (HS oscillator)
+#pragma config OSCS = OFF       // Oscillator System Clock Switch Enable bit (Oscillator system clock switch option is disabled (main oscillator is source))
+
+// CONFIG2L
+#pragma config PWRT = OFF       // Power-up Timer Enable bit (PWRT disabled)
+#pragma config BOR = OFF         // Brown-out Reset Enable bit (Brown-out Reset enabled)
+#pragma config BORV = 25        // Brown-out Reset Voltage bits (VBOR set to 2.5V)
+
+// CONFIG2H
+#pragma config WDT = OFF         // Watchdog Timer Enable bit (WDT enabled)
+#pragma config WDTPS = 128      // Watchdog Timer Postscale Select bits (1:128)
+
+// CONFIG4L
+#pragma config STVR = OFF        // Stack Full/Underflow Reset Enable bit (Stack Full/Underflow will cause Reset)
+#pragma config LVP = OFF         // Low-Voltage ICSP Enable bit (Low-Voltage ICSP enabled)
+
+// CONFIG5L
+#pragma config CP0 = OFF        // Code Protection bit (Block 0 (000200-001FFFh) not code protected)
+#pragma config CP1 = OFF        // Code Protection bit (Block 1 (002000-003FFFh) not code protected)
+#pragma config CP2 = OFF        // Code Protection bit (Block 2 (004000-005FFFh) not code protected)
+#pragma config CP3 = OFF        // Code Protection bit (Block 3 (006000-007FFFh) not code protected)
+
+// CONFIG5H
+#pragma config CPB = OFF        // Boot Block Code Protection bit (Boot Block (000000-0001FFh) not code protected)
+#pragma config CPD = OFF        // Data EEPROM Code Protection bit (Data EEPROM not code protected)
+
+// CONFIG6L
+#pragma config WRT0 = OFF       // Write Protection bit (Block 0 (000200-001FFFh) not write protected)
+#pragma config WRT1 = OFF       // Write Protection bit (Block 1 (002000-003FFFh) not write protected)
+#pragma config WRT2 = OFF       // Write Protection bit (Block 2 (004000-005FFFh) not write protected)
+#pragma config WRT3 = OFF       // Write Protection bit (Block 3 (006000-007FFFh) not write protected)
+
+// CONFIG6H
+#pragma config WRTC = OFF       // Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) not write protected)
+#pragma config WRTB = OFF       // Boot Block Write Protection bit (Boot Block (000000-0001FFh) not write protected)
+#pragma config WRTD = OFF       // Data EEPROM Write Protection bit (Data EEPROM not write protected)
+
+// CONFIG7L
+#pragma config EBTR0 = OFF      // Table Read Protection bit (Block 0 (000200-001FFFh) not protected from Table Reads executed in other blocks)
+#pragma config EBTR1 = OFF      // Table Read Protection bit (Block 1 (002000-003FFFh) not protected from Table Reads executed in other blocks)
+#pragma config EBTR2 = OFF      // Table Read Protection bit (Block 2 (004000-005FFFh) not protected from Table Reads executed in other blocks)
+#pragma config EBTR3 = OFF      // Table Read Protection bit (Block 3 (006000-007FFFh) not protected from Table Reads executed in other blocks)
+
+// CONFIG7H
+#pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot Block (000000-0001FFh) not protected from Table Reads executed in other blocks)
+
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+// PIC18F458 Configuration Bit Settings
+
+
+
+// 'C' source line config statements
+
+
+
+// CONFIG1H
+
+
+
+#include <xc.h>
+#define _XTAL_FREQ 20000000
+char data_array[11];
+void System_init()
+{
+    GIE = 1;          //enable the global 
+    PEIE = 1;         //enable peripheral
+    
+}
+void  CAN_init()
+{
+    TRISBbits.RB2 = 0;     //transmitting pin in MCU  Tx
+    TRISBbits.RB3 = 1;     //receiving pin in MCU Rx  
+    PIE3bits.RXB0IE=1;
+    IPR3bits.RXB0IP=1;
+}
+void Set_baudrate()
+{
+    CANCON = 0x80;      //setting the configuration mode to set baud rate
+    while(CANSTAT != 0x80);      //setting the status register
+    BRGCON1 = 0XC1;        //r
+    BRGCON2 = 0XAE;        
+    BRGCON3 = 0X45;
+   // CIOCON = 0X20;
+    CANCON = 0x0E;
+}
+
+void CAN_mf()
+{
+    //CANCON=0x80;
+    RXM0SIDH=0X00;
+    RXM0SIDL=0X00;
+    RXF0SIDH= 0X00;
+    RXF0SIDL= 0X00;
+    RXB0CON=0x00;  
+   // CANCON=0x0E;//
+    
+}
+
+void CAN_read()
+{
+    CANCON=0x0E;
+    RXB0CON=0X00;
+    data_array[0]=RXB0D0;
+    data_array[1]=RXB0D1;
+    data_array[2]=RXB0D2;
+    data_array[3]=RXB0D3;
+    data_array[4]=RXB0D4;
+    data_array[5]=RXB0D5;
+    data_array[6]=RXB0D6;
+    data_array[7]=RXB0D7;
+    data_array[8]=RXB0DLC;
+    data_array[9]=RXB0SIDL;
+    data_array[10]=RXB0SIDH;
+    RXB0CONbits.RXFUL=0;
+    //PORTBbits.RB0=0;
+    
+}
+void __interrupt() ISR1()
+{
+    if(RXB0IF)
+    {
+        RXB0IF=0;
+    CAN_read(); 
+    }
+}
+
+void CAN_write()
+{
+     CANCON = 0x08;
+     TXB0SIDH = 0x00;                   //Transmitting to  address 932 
+     TXB0SIDL = 0x08;
+     TXB0EIDH=0x09;
+     TXB0EIDL=0x32;
+     TXB0DLC = 0X08;
+     TXB0D0  = 0X22;
+     TXB0D1  = 0X22;
+     TXB0D2  = 0X22;
+     TXB0D3  = 0X01;
+     TXB0D4  = 0X22;
+     TXB0D5  = 0X22;
+     TXB0D6  = 0X22;
+     TXB0D7  = 0X22;
+     TXB0CON = 0X08;
+     CANCON = 0x08;
+     
+}
+void CAN_write2()
+{
+     CANCON = 0x08;
+     TXB0SIDH = 0x00;                   //Transmitting to  address 932
+     TXB0SIDL = 0x08;
+     TXB0EIDH= 0x09;
+     TXB0EIDL= 0x32;
+     TXB0DLC = 0X08;
+     TXB0D0  = 0X11;
+     TXB0D1  = 0X11;
+     TXB0D2  = 0X11;
+     TXB0D3  = 0X00;
+     TXB0D4  = 0X11;
+     TXB0D5  = 0X11;
+     TXB0D6  = 0X11;
+     TXB0D7  = 0X11;
+     TXB0CON = 0X08;
+     CANCON = 0x08;
+     
+}
+int main()//receiver function main
+{
+    TRISDbits.RD0=0;                //door is locked initially
+    System_init();         //calling 
+    CAN_mf();               //mask and filter calling
+    CAN_init();           //calling function
+    Set_baudrate();        //callings
+    //CAN_read();
+    
+    while(1)
+    {
+        if(data_array[0]==0x44 && data_array[1]==0x01)
+        {
+         
+            if(data_array[6]==0x0c)
+            {
+                CAN_write();
+            }
+            if(data_array[6]==0xc0)
+            {
+                CAN_write2();
+            }
+        }
+        
+        
+    }
+}
+
+
